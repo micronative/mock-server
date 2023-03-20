@@ -6,26 +6,21 @@ use Micronative\MockServer\Config\Response;
 
 class ResponseBuilder implements BuilderInterface
 {
-    private array $responses;
+    private array $response;
 
     /**
-     * @param array $responses
+     * @param array $response
      */
-    public function __construct(array $responses)
+    public function __construct(array $response)
     {
-        $this->responses = $responses;
+        $this->response = $response;
     }
 
     /**
-     * @return Response[]
+     * @return Response
      */
-    public function build(): array
+    public function build(): Response
     {
-        $responses = [];
-        foreach ($this->responses as $code => $response) {
-            $responses[] = new Response((int)$code, $response['format'], $response['content']);
-        }
-
-        return $responses;
+        return new Response($this->response['code'], $this->response['format'], $this->response['content']);
     }
 }

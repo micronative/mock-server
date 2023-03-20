@@ -2,12 +2,14 @@
 
 namespace Micronative\MockServer\Builders;
 
-use Bramus\Router\Router;
 use Micronative\MockServer\Config\Endpoint;
 use Micronative\MockServer\Config\Response;
 use Micronative\MockServer\Exceptions\ConfigException;
+use Micronative\MockServer\Routing\Router;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response as SymfonyResponse;
+use Symfony\Component\Routing\Route;
+use Symfony\Component\Routing\RouteCollection;
 use Symfony\Component\Yaml\Exception\ParseException;
 
 class RouterBuilder implements BuilderInterface
@@ -32,20 +34,13 @@ class RouterBuilder implements BuilderInterface
      */
     public function build(): Router
     {
-        $request = Request::createFromGlobals();
-        $code = $request->get(self::SERVER_MODE) ?? self::DEFAULT_CODE;
         try {
-            $router = new Router();
-            $router->setBasePath('/');
-            foreach ($this->endpoints as $endpoint) {
-                $response = $endpoint->getResponseByCode($code);
-                $router->match(implode('|', array_values($endpoint->getMethods())), $endpoint->getPath(), function () use ($request, $response) {
-                    $this->sendResponse($response);
-                    $this->log($request, $response);
-                });
+            $routes = new RouteCollection();
+            foreach ($this->endpoints as $endpoint){
+                $route = new Route($endpoint->getPath(), ['_endpoint' => $endpoint]);
+                $routes->add($endpoint->getPath(), $route);
             }
-
-            return $router;
+            return new Router($routes);
         } catch (ParseException $exception) {
             throw new ConfigException($exception->getMessage(), $exception->getCode(), $exception);
         }

@@ -1,9 +1,9 @@
 /user/{id}:
   methods: [ GET, POST ]
-  responses:
-    200:
-      format: string
-      content: '{
+  response:
+    code: 200
+    format: json
+    content: '{
         "id":"5e8e44a0-2552-4acc-9964-f5ca07948486",
         "payload":{
           "name":"Ken",
@@ -11,17 +11,19 @@
         },
         "created_at":"2022-09-05 03:37:54"
       }'
-    404:
-      format: json
-      content: '{
+/user/{id}/error:
+  methods: [ GET ]
+  response:
+    code: 404
+    format: json
+    content: '{
         "error":"User Not Found"
       }'
-/user/{id}/settings:
-  methods: [ GET, POST ]
-  responses:
-    200:
-      format: string
-      content: '200'
-    404:
-      format: json
-      content: '404'
+/users/find/{id}:
+  methods: [ GET ]
+  response:
+    code: 200
+    format: json
+    content: '{
+        "error":"User Not Found"
+      }'

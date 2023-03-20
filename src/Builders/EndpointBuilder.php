@@ -26,12 +26,12 @@ class EndpointBuilder implements BuilderInterface
         foreach ($this->configFiles as $file) {
             $configs = Yaml::parseFile($file);
             foreach ($configs as $path => $item) {
-                $responses = (new ResponseBuilder($item['responses']))->build();
+                $response = (new ResponseBuilder($item['response']))->build();
                 $endpoint = new Endpoint();
                 $endpoint
                     ->setPath($path)
                     ->setMethods($item['methods'])
-                    ->setResponses($responses);
+                    ->setResponse($response);
                 $endpoints[] = $endpoint;
             }
         }

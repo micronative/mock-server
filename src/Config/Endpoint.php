@@ -6,9 +6,7 @@ class Endpoint
 {
     private string $path;
     private array $methods;
-
-    /** @var Response[] */
-    private array $responses;
+    private Response $response;
 
     /**
      * @return string
@@ -47,35 +45,20 @@ class Endpoint
     }
 
     /**
-     * @return Response[]
+     * @return Response
      */
-    public function getResponses(): array
+    public function getResponse(): Response
     {
-        return $this->responses;
+        return $this->response;
     }
 
     /**
-     * @param Response[] $responses
+     * @param Response $response
      * @return Endpoint
      */
-    public function setResponses(array $responses): Endpoint
+    public function setResponse(Response $response): Endpoint
     {
-        $this->responses = $responses;
+        $this->response = $response;
         return $this;
-    }
-
-    /**
-     * @param int $code
-     * @return Response|null
-     */
-    public function getResponseByCode(int $code): ?Response
-    {
-        foreach ($this->getResponses() as $response) {
-            if ($response->getCode() == $code) {
-                return $response;
-            }
-        }
-
-        return null;
     }
 }

@@ -1,18 +1,20 @@
 /product/{id}:
   methods: [ GET, POST ]
-  responses:
-    200:
-      format: string
-      content: '200'
-    404:
-      format: json
-      content: '404'
-/product/{id}/settings:
+  response:
+    code: 200
+    format: string
+    content: '{
+        "id":"5e8e44a0-2552-4acc-9964-f5ca07948486",
+        "payload":{
+          "name":"Lamp"
+        },
+        "created_at":"2022-09-05 03:37:54"
+      }'
+/error/product/{id}:
   methods: [ GET, POST ]
-  responses:
-    200:
-      format: string
-      content: '200'
-    404:
-      format: json
-      content: '402'
+  response:
+    code: 404
+    format: string
+    content: '{
+        "error":"Product Not Found"
+      }'
