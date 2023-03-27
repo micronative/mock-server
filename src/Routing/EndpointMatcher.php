@@ -19,10 +19,10 @@ class EndpointMatcher
 
     /**
      * @param Request $request
-     * @return Endpoint|mixed
+     * @return Endpoint
      * @throws RequestMethodException
      */
-    public function match(Request $request)
+    public function match(Request $request): Endpoint
     {
         if (in_array($request->getMethod(), $this->endpoint->getMethods())){
             return $this->endpoint;

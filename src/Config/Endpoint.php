@@ -4,9 +4,21 @@ namespace Micronative\MockServer\Config;
 
 class Endpoint
 {
-    private string $path;
-    private array $methods;
-    private Response $response;
+    private ?string $path;
+    private ?array $methods;
+    private ?Response $response;
+
+    /**
+     * @param string|null $path
+     * @param array|null $methods
+     * @param Response|null $response
+     */
+    public function __construct(string $path = null, array $methods = null, Response $response = null)
+    {
+        $this->path = $path;
+        $this->methods = $methods;
+        $this->response = $response;
+    }
 
     /**
      * @return string

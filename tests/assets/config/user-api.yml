@@ -1,4 +1,4 @@
-/product/{id}:
+/user/{id}:
   methods: [ GET, POST ]
   response:
     code: 200
@@ -6,15 +6,24 @@
     content: '{
         "id":"5e8e44a0-2552-4acc-9964-f5ca07948486",
         "payload":{
-          "name":"Lamp"
+          "name":"Ken",
+          "email":"ken@elmo.com"
         },
         "created_at":"2022-09-05 03:37:54"
       }'
-/error/product/{id}:
-  methods: [ GET, POST ]
+/user/{id}/error:
+  methods: [ GET ]
   response:
     code: 404
     format: json
     content: '{
-        "error":"Product Not Found"
+        "error":"User Not Found"
+      }'
+/users/find/{id}:
+  methods: [ GET ]
+  response:
+    code: 200
+    format: json
+    content: '{
+        "error":"User Not Found"
       }'

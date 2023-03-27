@@ -9,11 +9,11 @@ class Response
     private string $content;
 
     /**
-     * @param int $code
-     * @param string $format
-     * @param string $content
+     * @param int|null $code
+     * @param string|null $format
+     * @param string|null $content
      */
-    public function __construct(int $code, string $format, string $content)
+    public function __construct(?int $code = null, ?string $format = null, ?string $content = null)
     {
         $this->code = $code;
         $this->format = $format;

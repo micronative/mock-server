@@ -3,20 +3,14 @@
 namespace Micronative\MockServer\Builders;
 
 use Micronative\MockServer\Config\Endpoint;
-use Micronative\MockServer\Config\Response;
 use Micronative\MockServer\Exceptions\ConfigException;
 use Micronative\MockServer\Routing\Router;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response as SymfonyResponse;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouteCollection;
 use Symfony\Component\Yaml\Exception\ParseException;
 
 class RouterBuilder implements BuilderInterface
 {
-    const DEFAULT_CODE = 200;
-    const SERVER_MODE = 'serverMode';
-
     /** @var Endpoint[] */
     private array $endpoints;
 
@@ -44,26 +38,5 @@ class RouterBuilder implements BuilderInterface
         } catch (ParseException $exception) {
             throw new ConfigException($exception->getMessage(), $exception->getCode(), $exception);
         }
-    }
-
-    /**
-     * @param Response $response
-     * @return void
-     */
-    private function sendResponse(Response $response)
-    {
-        $symfonyResponse = new SymfonyResponse($response->getContent(), $response->getCode());
-        $symfonyResponse->send();
-    }
-
-    /**
-     * @param Request $request
-     * @param Response $response
-     * @return void
-     */
-    private function log(Request $request, Response $response)
-    {
-        error_log(print_r('-- Request: ' . $request->getRequestUri(), true));
-        error_log(print_r('-- Response: ' . $response->getContent(), true));
     }
 }

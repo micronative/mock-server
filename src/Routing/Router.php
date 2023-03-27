@@ -6,6 +6,7 @@ use Micronative\MockServer\Exceptions\RequestMethodException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Exception\MethodNotAllowedException;
+use Symfony\Component\Routing\Exception\NoConfigurationException;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 use Symfony\Component\Routing\Matcher\UrlMatcher;
 use Symfony\Component\Routing\RequestContext;
@@ -30,7 +31,7 @@ class Router
     /**
      * @param Request $request
      * @return Response
-     * @throws RequestMethodException | ResourceNotFoundException | MethodNotAllowedException
+     * @throws RequestMethodException | ResourceNotFoundException | MethodNotAllowedException | NoConfigurationException
      */
     public function process(Request $request): Response
     {

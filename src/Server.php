@@ -2,17 +2,12 @@
 
 namespace Micronative\MockServer;
 
-
 use Micronative\MockServer\Builders\EndpointBuilder;
 use Micronative\MockServer\Builders\RouterBuilder;
 use Micronative\MockServer\Exceptions\ConfigException;
-use Micronative\MockServer\Exceptions\RequestMethodException;
 use Micronative\MockServer\Routing\Router;
-use PHPUnit\Exception;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Exception\MethodNotAllowedException;
-use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 
 class Server implements ServerInterface
 {
@@ -21,18 +16,26 @@ class Server implements ServerInterface
 
     /**
      * @param array $configFiles
+     * @param Router|null $router
      * @throws ConfigException
      */
-    public function __construct(array $configFiles)
+    public function __construct(array $configFiles, Router $router = null)
     {
         $this->configFiles = $configFiles;
-        $endpoints = (new EndpointBuilder($this->configFiles))->build();
-        $this->router = (new RouterBuilder($endpoints))->build();
+        if ($router instanceof Router) {
+            $this->router = $router;
+        } else {
+            $endpoints = (new EndpointBuilder($this->configFiles))->build();
+            $this->router = (new RouterBuilder($endpoints))->build();
+        }
     }
 
-    public function run(): void
+    public function run(Request $request = null): void
     {
-        $request = Request::createFromGlobals();
+        if (!$request) {
+            $request = Request::createFromGlobals();
+        }
+
         try {
             $response = $this->router->process($request);
         } catch (\Exception $exception) {
