@@ -4,7 +4,6 @@
     <arg name="extensions" value="php" />
 
     <rule ref="Generic.Classes.DuplicateClassName" />
-    <rule ref="Generic.Classes.OpeningBraceSameLine" />
     <rule ref="Generic.CodeAnalysis.EmptyPHPStatement" />
     <rule ref="Generic.CodeAnalysis.EmptyStatement" />
     <rule ref="Generic.CodeAnalysis.ForLoopShouldBeWhileLoop" />
@@ -59,7 +58,6 @@
     <rule ref="Generic.PHP.Syntax" />
     <rule ref="Generic.VersionControl.GitMergeConflict" />
     <rule ref="Generic.WhiteSpace.ArbitraryParenthesesSpacing" />
-    <rule ref="Generic.WhiteSpace.DisallowSpaceIndent" />
     <rule ref="Generic.WhiteSpace.IncrementDecrementSpacing" />
     <rule ref="Generic.WhiteSpace.LanguageConstructSpacing" />
 </ruleset>
