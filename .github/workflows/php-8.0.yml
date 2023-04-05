@@ -14,7 +14,7 @@ jobs:
       - name: Composer install
         uses: php-actions/composer@v6
         with:
-          php_version: "8.0"
+          php_version: "7.4"
 
       - name: Archive build
         run: mkdir /tmp/github-actions/ && tar -cvf /tmp/github-actions/build.tar ./
@@ -28,7 +28,6 @@ jobs:
   phpunit:
     runs-on: ubuntu-latest
     needs: [ composer ]
-
     outputs:
       coverage: ${{ steps.store-coverage.outputs.coverage_text }}
 
@@ -46,8 +45,8 @@ jobs:
         env:
           XDEBUG_MODE: cover
         with:
-          version: "9.3"
-          php_version: "8.0"
+          version: "9.0"
+          php_version: "7.4"
           php_extensions: xdebug
           configuration: phpunit.xml
           bootstrap: vendor/autoload.php
@@ -63,7 +62,6 @@ jobs:
   coverage:
     runs-on: ubuntu-latest
     needs: [ phpunit ]
-
     steps:
       - uses: actions/checkout@v3
 
