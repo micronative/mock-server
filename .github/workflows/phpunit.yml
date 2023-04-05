@@ -18,6 +18,6 @@ jobs:
         with:
           version: "9.0"
           bootstrap: vendor/autoload.php
-          configuration: test/phpunit.xml
+          configuration: phpunit.xml
           args: --coverage-text
           php_version: "7.4"
