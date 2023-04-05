@@ -4,7 +4,7 @@
 [![Coverage][ico-codecov]][link-codecov]
 
 [ico-license]: https://img.shields.io/github/license/nrk/predis.svg?style=flat-square
-[ico-build]: https://badge.status.php.gt/database-build.svg
+[ico-build]: https://github.com/micronative/mock-server/actions/workflows/php-7.4.yml/badge.svg
 [ico-codecov]: https://codecov.io/gh/micronative/mock-server/branch/master/graph/badge.svg
 
 [link-build]: https://github.com/micronative/mock-server/actions
