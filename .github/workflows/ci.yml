@@ -53,7 +53,7 @@ jobs:
         env:
           XDEBUG_MODE: cover
         with:
-          version: "^9.0"
+          version: "9.0"
           php_version: ${{ matrix.php }}
           php_extensions: xdebug
           configuration: phpunit.xml
