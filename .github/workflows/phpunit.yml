@@ -16,7 +16,7 @@ jobs:
         env:
           TEST_NAME: Scarlett
         with:
-          version: "^9.0"
+          version: "9.0"
           bootstrap: vendor/autoload.php
           configuration: test/phpunit.xml
           args: --coverage-text
