@@ -12,7 +12,7 @@
 [link-build]: https://github.com/micronative/mock-server/actions
 [link-codecov]: https://codecov.io/gh/micronative/mock-server
 
-A mock server for client-server testing purposes.
+A mock server for client-server testing purposes
 
 ## Configuration
 <pre>
